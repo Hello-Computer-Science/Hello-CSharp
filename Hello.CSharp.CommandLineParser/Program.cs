@@ -1,6 +1,6 @@
 ﻿using CommandLine;
 
-Parser.Default.ParseArguments<Options>(Environment.GetCommandLineArgs())
+Parser.Default.ParseArguments<Options>(args)
     .WithParsed<Options>(options =>
     {
         if (options.Verbose)
@@ -16,7 +16,7 @@ Parser.Default.ParseArguments<Options>(Environment.GetCommandLineArgs())
     })
     .WithNotParsed(errs => Console.WriteLine("Failed to parse options."));
 
-var result = Parser.Default.ParseArguments<Verbs.AddVerbOptions>(Environment.GetCommandLineArgs())
+var result = Parser.Default.ParseArguments<Verbs.AddVerbOptions>(args)
     .WithNotParsed(errs => Console.WriteLine("Failed to parse verbs."))
     .MapResult(
         options => options.IntergerA + options.IntergerB,
